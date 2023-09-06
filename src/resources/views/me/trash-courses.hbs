@@ -1,0 +1,48 @@
+<div class="stored-courese">
+  <h1>khoa hoc da xoa</h1>
+  <a href="/me/stored/courses">danh sach khoa hoc</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>stt</th>
+        <th>ten khoa hoc</th>
+        <th>mo ta</th>
+        <th>trinh do</th>
+        <th>thoi gian tao</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each courses}}
+        <tr>
+          <td>{{sum @index 1}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.description}}</td>
+          <td>{{this.level}}</td>
+          <td>{{this.createAt}}</td>
+          <td>
+            <form
+              action="/courses/{{this._id}}/restore?_method=PATCH"
+              method="POST"
+            >
+              <button type="submit">khoi phuc</button>
+            </form>
+            <form
+              action="/courses/{{this._id}}/force?_method=DELETE"
+              method="POST"
+            >
+              <button type="submit">xoa vinh vien</button>
+            </form>
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>
+            thùng rác trống
+            <a href="/me/stored/courses">Dahg sach khoa hoc</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
